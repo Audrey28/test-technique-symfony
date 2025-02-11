@@ -7,7 +7,7 @@
         <div class="row">
             {% for specialist in specialists %}
                 <div class="col-lg-3">
-                    <div class="text-center card-box {% if specialist.online %}border-success{% endif %}">">
+                    <div class="text-center card-box {% if specialist.online %}border-success{% endif %}">
                         <div class="member-card pt-2 pb-2">
                             <div class="thumb-lg member-thumb mx-auto">
                                 <img src="{{ asset('build/avatar.png') }}" class="rounded-circle img-thumbnail" alt="profile-image">
@@ -18,7 +18,10 @@
                                     {{ specialist.online ? "🟢 En ligne" : "Hors ligne" }}
                                 </span>
                             </div>
-                            <a class="btn btn-primary mt-2" href="#">Appeler</a>
+                            <div class="mt-2">
+                                <a class="btn btn-primary" href="{{ path('specialist_detail', { id: specialist.id }) }}">Voir le profil</a>
+                                <a class="btn btn-primary" href="#">Appeler</a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Specialist;
 use App\Repository\SpecialistRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,14 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig', [
             'specialists' => $specialistRepository->findAllOrderedByOnline(),
+        ]);
+    }
+
+    #[Route('/specialist/{id}', name: 'specialist_detail')]
+    public function detail(Specialist $specialist): Response
+    {
+        return $this->render('default/detail.html.twig', [
+            'specialist' => $specialist, 
         ]);
     }
 }
