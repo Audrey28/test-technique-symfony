@@ -7,14 +7,18 @@
         <div class="row">
             {% for specialist in specialists %}
                 <div class="col-lg-3">
-                    <div class="text-center card-box">
+                    <div class="text-center card-box {% if specialist.online %}border-success{% endif %}">">
                         <div class="member-card pt-2 pb-2">
-                            <div class="thumb-lg member-thumb mx-auto"><img src="{{ asset('build/avatar.png') }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
-                            <div class="">
-                                <h4>{{ specialist.firstName }}</h4>
-                                <small>{{ specialist.online ? "En ligne" : "Hors ligne" }}</small>
+                            <div class="thumb-lg member-thumb mx-auto">
+                                <img src="{{ asset('build/avatar.png') }}" class="rounded-circle img-thumbnail" alt="profile-image">
                             </div>
-                            <a class="btn btn-primary" href="#">Appeler</a>
+                            <div class="mt-2">
+                                <h4>{{ specialist.firstName }} {{ specialist.lastName }}</h4>
+                                <span class="badge {% if specialist.online %}bg-success{% else %}bg-secondary{% endif %}">
+                                    {{ specialist.online ? "🟢 En ligne" : "Hors ligne" }}
+                                </span>
+                            </div>
+                            <a class="btn btn-primary mt-2" href="#">Appeler</a>
                         </div>
                     </div>
                 </div>

@@ -63,4 +63,15 @@ class SpecialistRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+  public function findAllOrderedByOnline(): array 
+  {
+    return $this->createQueryBuilder('query')
+     ->where('query.active = true') //Ne récupérer que les spécialistes actifs
+     ->orderBy('query.online', 'DESC')
+     ->addOrderBy('query.lastName', 'ASC')
+     ->getQuery()
+     ->getResult(); 
+     
+  }
 }
