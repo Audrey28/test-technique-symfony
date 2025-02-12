@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des appels{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Liste des appels</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Psychologue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appel in appels %}
+                <tr>
+                    <td>{{ appel.id }}</td>
+                    <td>{{ appel.date|date('d/m/Y H:i') }}</td>
+                    <td>{{ appel.specialist.firstName }} {{ appel.specialist.lastName }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun appel enregistré.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
