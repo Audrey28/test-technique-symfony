@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpecialistRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SpecialistRepository::class)]
@@ -36,6 +38,14 @@ class Specialist
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $city;
+
+    #[ORM\OneToMany(mappedBy: 'specialist', targetEntity: Appel::class)]
+    private Collection $appels;
+
+    public function __construct()
+    {
+        $this->appels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +144,36 @@ class Specialist
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Appel>
+     */
+    public function getAppels(): Collection
+    {
+        return $this->appels;
+    }
+
+    public function addAppel(Appel $appel): static
+    {
+        if (!$this->appels->contains($appel)) {
+            $this->appels->add($appel);
+            $appel->setSpecialist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAppel(Appel $appel): static
+    {
+        if ($this->appels->removeElement($appel)) {
+            // set the owning side to null (unless already changed)
+            if ($appel->getSpecialist() === $this) {
+                $appel->setSpecialist(null);
+            }
+        }
 
         return $this;
     }
