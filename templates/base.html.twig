@@ -19,7 +19,7 @@
                 <a href="{{ path('app_homepage') }}" class="navbar-brand d-flex align-items-center"><strong>Pros-Consulte</strong>
                 </a>
                 {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-                    <a href="{{ path('admin_dashboard') }}">Paramètres</a>
+                    <a href="{{ path('admin_specialist_list') }}">Paramètres</a>
                 {% endif %}
             </div>
         </div>
