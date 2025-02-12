@@ -11,7 +11,7 @@
                 <p><strong>Status :</strong> {{ specialist.online ? "En ligne" : "Hors ligne" }}</p>
                 <p><strong>Email :</strong> {{ specialist.email }}</p>
                 <p><strong>Téléphone :</strong> {{ specialist.mobile }}</p>
-                <a href="#" class="btn btn-primary">Appeler</a>
+                <a class="btn btn-primary" href="{{ path('specialist_call', { id: specialist.id }) }}">Appeler</a>
                 <a href="{{ path('app_homepage') }}" class="btn btn-secondary">Retour</a>
             </div>
         </div>
