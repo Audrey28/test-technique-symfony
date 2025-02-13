@@ -12,15 +12,31 @@ class SpecialistType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('online')
-            ->add('active')
-            ->add('description')
-            ->add('mobile')
-            ->add('email')
-            ->add('city')
-        ;
+        ->add('firstName', null, [
+            'label' => 'Prénom'
+        ])
+        ->add('lastName', null, [
+            'label' => 'Nom'
+        ])
+        ->add('online', null, [
+            'label' => 'En ligne'
+        ])
+        ->add('active', null, [
+            'label' => 'Actif'
+        ])
+        ->add('description', null, [
+            'label' => 'Description'
+        ])
+        ->add('mobile', null, [
+            'label' => 'Numéro de téléphone mobile'
+        ])
+        ->add('email', null, [
+            'label' => 'Email'
+        ])
+        ->add('city', null, [
+            'label' => 'Ville'
+        ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

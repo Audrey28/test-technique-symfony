@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Pros-Consulte{% endblock %}</title>
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,14 +14,24 @@
         {% endblock %}
     </head>
     <header>
-        <div class="navbar navbar-dark box-shadow plateform-header">
+       <div class="navbar navbar-dark box-shadow plateform-header">
             <div class="container d-flex justify-content-between">
                 <a href="{{ path('app_homepage') }}" class="navbar-brand d-flex align-items-center">
                     <img src="{{ asset('build/logo.png') }}" alt="Pros-Consulte" height="40" class="me-2">       
                 </a>
-                {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-                    <a href="{{ path('admin_specialist_list') }}">Paramètres</a>
-                {% endif %}
+
+                <div class="d-flex align-items-center">
+                    {% if app.user %}
+                        <span class="navbar-text text-light me-3">Bienvenue, {{ app.user.email }}</span>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger btn-sm">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-primary btn-sm">Se connecter</a>
+                    {% endif %}
+                    
+                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                        <a href="{{ path('admin_specialist_list') }}" class="btn btn-info ms-2">Parametres</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </header>
